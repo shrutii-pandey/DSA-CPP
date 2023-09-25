@@ -1,0 +1,33 @@
+//https://leetcode.com/problems/find-the-difference/description/?envType=daily-question&envId=2023-09-25
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        char letter ;
+        unordered_map<char,int> map;
+
+        //created map of all letters in string s and stored the count of letters
+        for(int j=0; j<s.length();j++)
+        {
+            char c = s[j];
+            map[c]++;
+        }    
+
+        // reduced the count if same letters present in string t
+        for(int i=0; i<t.length();i++)
+        {
+            char ch = t[i];
+            map[ch]--;
+        }
+
+        // return letter with non zero count
+        for(auto i=map.begin(); i!=map.end(); i++)
+        {
+            if(i->second!=0)
+            {
+                letter = i->first;
+            }
+        }    
+     return letter;   
+    }
+};
