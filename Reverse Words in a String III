@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/reverse-words-in-a-string-iii/description/?envType=daily-question&envId=2023-10-01
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        string ans;
+        int n = s.length();
+        stack<char> st;
+
+        for (int i = 0; i < n; i++) {
+            if (s[i] != ' ') {
+                st.push(s[i]);
+            } else {
+                while (!st.empty()) {
+                    ans += st.top();
+                    st.pop();
+                }
+                ans += ' '; // Add the space
+            }
+        }
+
+        // Handle the last word
+        while (!st.empty()) {
+            ans += st.top();
+            st.pop();
+        }
+
+        return ans;
+    }
+};
