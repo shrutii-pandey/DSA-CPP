@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+class Solution {
+public:
+    int minimumChairs(std::string s) {
+        int ecount = 0, lcount = 0;
+        for(char ch: s)
+        {
+            if(ch == 'E')
+            {
+                if(lcount == 0)
+                {
+                    ecount++;
+                }
+                if(lcount < 0)
+                {
+                    lcount = lcount + 1;
+                }
+            }
+            if(ch == 'L')
+            {
+                lcount = lcount -1;
+            }
+        }
+        return ecount;
+    }
+};
+
+int main() {
+    Solution solution;
+    std::string input;
+
+    std::cout << "Enter the string of events (E for entry, L for leave): ";
+    std::cin >> input;
+
+    int result = solution.minimumChairs(input);
+    std::cout << "Minimum number of chairs required: " << result << std::endl;
+
+    return 0;
+}
